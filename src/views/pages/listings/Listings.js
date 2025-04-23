@@ -87,7 +87,7 @@ const VacanciesListing = () => {
   useEffect(() => {
     const fetchPricetypeOptions = async () => {
       try {
-        const res = await fetch('http://localhost:8000/listings/api/options/pricetypes/')
+        const res = await fetch('http://92.108.241.160:8000/listings/api/options/pricetypes/')
         if (!res.ok) throw new Error('Error fetching pricetype options')
         const data = await res.json()
         // data.options => ["FAST_BID","FIXED","MIN_BID", etc...]
@@ -101,7 +101,7 @@ const VacanciesListing = () => {
 
     const fetchParticulierOptions = async () => {
       try {
-        const res = await fetch('http://localhost:8000/listings/api/options/particuliers/')
+        const res = await fetch('http://92.108.241.160:8000/listings/api/options/particuliers/')
         if (!res.ok) throw new Error('Error fetching particulier options')
         const data = await res.json()
         // data.options => ["true","false"]
@@ -326,7 +326,7 @@ const VacanciesListing = () => {
           params.append('sort_order', sortOrder)
         }
 
-        const url = `http://localhost:8000/listings/api/vacancies/?${params.toString()}`
+        const url = `http://92.108.241.160:8000/listings/api/vacancies/?${params.toString()}`
         console.log('>>> [FETCH] final GET url =', url)
 
         const response = await fetch(url)

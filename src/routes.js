@@ -2,7 +2,7 @@ import React from 'react'
 import { Translation } from 'react-i18next'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
-const Listings = React.lazy(() => import('./views/pages/listings/listings'))
+const Listings = React.lazy(() => import('./views/pages/listings/Listings'))
 const Indivudual = React.lazy(() => import('./views/pages/individual/Individual'))
 
 const routes = [

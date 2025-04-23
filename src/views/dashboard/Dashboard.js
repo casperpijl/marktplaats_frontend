@@ -39,7 +39,7 @@ const Dashboard = () => {
     setLoading(true)
     setError('')
     try {
-      const response = await fetch('http://localhost:8000/listings/api/combos/top-ten/')
+      const response = await fetch('http://92.108.241.160:8000/listings/api/combos/top-ten/')
       if (!response.ok) {
         throw new Error(`Error fetching top combos (status ${response.status})`)
       }

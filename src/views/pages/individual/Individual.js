@@ -43,7 +43,7 @@ function VacancyDetailPage() {
   useEffect(() => {
     async function fetchVacancy() {
       try {
-        const response = await fetch(`http://localhost:8000/listings/api/vacancies/${id}/`)
+        const response = await fetch(`http://92.108.241.160:8000/listings/api/vacancies/${id}/`)
         if (!response.ok) {
           throw new Error(`Fout bij het ophalen van vacaturedetails. Status: ${response.status}`)
         }
@@ -66,7 +66,7 @@ function VacancyDetailPage() {
       setSimilarError(null)
       try {
         const response = await fetch(
-          `http://localhost:8000/listings/api/vacancies/${vacancy.id}/similar/`,
+          `http://92.108.241.160:8000/listings/api/vacancies/${vacancy.id}/similar/`,
         )
         if (!response.ok) {
           throw new Error(

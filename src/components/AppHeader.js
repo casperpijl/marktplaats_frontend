@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
@@ -47,14 +47,40 @@ const AppHeader = () => {
   const asideShow = useSelector((state) => state.asideShow)
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
+  // Track screen width for mobile responsiveness
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+
   useEffect(() => {
+    // Update screen size on resize
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    
+    // Set initial header shadow on scroll
     document.addEventListener('scroll', () => {
       headerRef.current &&
         headerRef.current.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
     })
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
-  return <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}></CHeader>
+  return (
+    <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}>
+      {isMobile && (
+        <CHeaderToggler
+          onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
+          className="d-md-none"
+        >
+          <CIcon icon={cilMenu} />
+        </CHeaderToggler>
+      )}
+    </CHeader>
+  )
 }
 
 export default AppHeader
